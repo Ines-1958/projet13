@@ -1,33 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { url, setHeaders } from './api'
+import { url } from './api'
 
 const initialState = {
   token: localStorage.getItem('token'),
-  firstName: '',
-  lastName: '',
   email: '',
-  registerStatus: '',
-  registerError: '',
-  userLoaded: false,
+  password: '',
+  firstName: localStorage.getItem('firstName'),
+  lastName: localStorage.getItem('lastName'),
+  loginError: null,
 }
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async (userData, { rejectWithValue }) => {
-    // try {
-    //   const token = await fetch.post(`${url}/authent`, {
-    //     email: userData.email,
-    //     password: userData.password,
-    //   });
-    //   return token;
-    // } catch (err) {
-    //   return rejectWithValue([], err);
-    // }
 
-    const response = await fetch.post(`${url}/login`, {
+  async (userData, { rejectWithValue }) => {
+    const response = await fetch(`${url}/login`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+
       body: JSON.stringify({
         email: userData.email,
         password: userData.password,
@@ -39,7 +31,6 @@ export const loginUser = createAsyncThunk(
     if (json.status === 200) {
       const token = json.body.token
       localStorage.setItem('token', token)
-
       const userInfos = await getUserInfos(token)
 
       const dataUserPayload = {
@@ -52,10 +43,9 @@ export const loginUser = createAsyncThunk(
 
       return dataUserPayload
     } else {
-      const error = {
-        message: json.message,
-      }
+      const error = { message: json.message }
       console.log(error)
+
       return rejectWithValue(error)
     }
   }
@@ -82,43 +72,19 @@ async function getUserInfos(token) {
   }
 }
 
-export const getUser = createAsyncThunk(
-  'auth/getUser',
-  async (userData, { getState }) => {
-    const { authent } = getState()
-    const token = authent.token
-
-    try {
-      const response = await fetch.post(`${url}/profile`, {
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      const json = await response.json()
-      const userInfos = json.body
-
-      localStorage.setItem('firstName', userInfos.firstName)
-      localStorage.setItem('lastName', userInfos.lastName)
-
-      return userInfos
-    } catch (error) {
-      console.log(error.response)
-      // return rejectWithValue(error.response.data)
-    }
-  }
-)
-
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
+
   async (userData, { getState }) => {
     const { auth } = getState()
     try {
-      const response = await fetch.put(`${url}/profile`, {
+      const response = await fetch(`${url}/profile`, {
+        method: 'PUT',
         headers: {
           'Content-type': 'application/json',
           Authorization: `Bearer ${auth.token}`,
         },
+
         body: JSON.stringify({
           email: userData.email,
           password: userData.password,
@@ -132,13 +98,40 @@ export const updateUser = createAsyncThunk(
   }
 )
 
+export const getUser = createAsyncThunk(
+  'user/getUser',
+  async (_, { getState }) => {
+    const { auth } = getState()
+    const token = auth.token
+    try {
+      const response = await fetch(`${url}/profile`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const json = await response.json()
+      const userInfos = json.body
+
+      localStorage.setItem('firstName', userInfos.firstName)
+      localStorage.setItem('lastName', userInfos.lastName)
+
+      return userInfos
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signOut: (state) => {
-      let keysToRemove = ['token', 'firstName', 'lastName']
-      keysToRemove.forEach((key) => localStorage.removeItem(key))
+    logOut: (state) => {
+      let itemsToBeRemoved = ['token', 'firstName', 'lastName']
+      itemsToBeRemoved.forEach((item) => localStorage.removeItem(item))
       state.firstName = null
       state.lastName = null
       state.token = null
@@ -165,5 +158,5 @@ const authSlice = createSlice({
   },
 })
 
-export const { signOut } = authSlice.actions
+export const { logOut } = authSlice.actions
 export default authSlice.reducer

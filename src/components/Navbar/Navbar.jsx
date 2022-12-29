@@ -1,18 +1,16 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import argentBankLogo from '../../assets/argentBankLogo.png'
+import { logOut } from '../../redux/slices/authSlice'
 
 export default function Navbar() {
+  const { firstName, token } = useSelector((state) => state.auth)
+
+  const dispatch = useDispatch()
+
   return (
     <nav className="main-nav">
-      {/* <a className="main-nav-logo" href="./index.html">
-        <img
-          className="main-nav-logo-image"
-          src="./img/argentBankLogo.png"
-          alt="Argent Bank Logo"
-        />
-        <h1 className="sr-only">Argent Bank</h1>
-      </a> */}
       <NavLink className="main-nav-logo" to="/">
         <img
           className="main-nav-logo-image"
@@ -21,16 +19,28 @@ export default function Navbar() {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </NavLink>
-      <div>
-        {/* <a className="main-nav-item" href="./sign-in.html">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </a> */}
-        <NavLink className="main-nav-item" to={`/login`}>
-          <i className="fa fa-user-circle"></i>
+
+      {token === null ? (
+        <NavLink to="/login" className="main-nav-item">
+          {/* <FaUserCircle size={18} /> */}
           Sign In
         </NavLink>
-      </div>
+      ) : (
+        <div>
+          <NavLink className="main-nav-item" to="/profile">
+            {/* <FaUserCircle size={18} /> */}
+            {`${firstName}`}
+          </NavLink>
+          <NavLink
+            className="main-nav-item"
+            to="/"
+            onClick={() => dispatch(logOut())}
+          >
+            {/* <FaSignOutAlt /> */}
+            Sign Out
+          </NavLink>
+        </div>
+      )}
     </nav>
   )
 }

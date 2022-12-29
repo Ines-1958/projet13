@@ -1,4 +1,4 @@
-// export const url = 'http://localhost:3001/api/v1/user/signup'
+// export const url = 'http://localhost:3001/api/v1'
 export const url = 'http://localhost:3001/api/v1/user'
 
 // export const setHeaders = () => {
@@ -10,11 +10,11 @@ export const url = 'http://localhost:3001/api/v1/user'
 
 //   return headers
 // }
-export const setHeaders = () => {
-  const headers = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-  return headers
-}
+// export const setHeaders = () => {
+//   const headers = {
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   }
+//   return headers
+// }

@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import { NavLink } from 'react-router-dom'
 import argentBankLogo from '../../assets/argentBankLogo.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, updateUser } from '../../redux/slices/authSlice'
+import { loginUser, updateUser, getUser } from '../../redux/slices/authSlice'
+import { logOut } from '../../redux/slices/authSlice'
+// import { useForm } from 'react-hook-form'
 
 export default function Profil() {
   const { firstName, lastName, token } = useSelector((state) => state.auth)
+
+  console.log(firstName)
 
   const [name, setName] = useState({
     firstName: '',
@@ -16,55 +20,31 @@ export default function Profil() {
 
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    setName({ firstName: firstName, lastName: lastName })
+  }, [firstName, lastName])
+
+  console.log(token)
+  console.log(firstName)
+
   return (
     <div>
-      {/* <Navbar /> */}
-      <nav className="main-nav">
-        {/* <a class="main-nav-logo" href="./index.html">
-          <img
-            className="main-nav-logo-image"
-            src="./img/argentBankLogo.png"
-            alt="Argent Bank Logo"
-          />
-          <h1 class="sr-only">Argent Bank</h1>
-        </a> */}
-        <NavLink className="main-nav-logo" to="/">
-          <img
-            className="main-nav-logo-image"
-            src={argentBankLogo}
-            alt="Argent Bank Logo"
-          />
-          <h1 className="sr-only">Argent Bank</h1>
-        </NavLink>
+      <Navbar />
 
-        <div>
-          {/* <a class="main-nav-item" href="./user.html">
-            <i class="fa fa-user-circle"></i>
-            Tony
-          </a>
-          <a class="main-nav-item" href="./index.html">
-            <i class="fa fa-sign-out"></i>
-            Sign Out
-          </a> */}
-          <NavLink className="main-nav-item" to="/profil">
-            <i className="fa fa-user-circle"></i>
-            Tony
-          </NavLink>
-          <NavLink className="main-nav-item" to="/">
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </NavLink>
-        </div>
-      </nav>
       <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
             <br />
             {/* Tony Jarvis! */}
-            {name}
+            {`${name.firstName} ${name.lastName}`}
           </h1>
-          <button className="edit-button">Edit Name</button>
+          <button
+            className="edit-button"
+            // onClick={dispatchUser}
+          >
+            Edit Name
+          </button>
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

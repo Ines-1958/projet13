@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../../redux/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
+// import { FaUserCircle } from 'react-icons/fa'
+
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+// import loginUser from '../../redux/slices/authSlice.js'
+
+//
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -11,20 +19,41 @@ export default function Login() {
   })
 
   const dispatch = useDispatch()
+  console.log(dispatch)
+
+  //
+  const navigate = useNavigate()
+
+  // const { register, handleSubmit } = useForm()
+  const { token, loginError } = useSelector((state) => state.auth)
+
+  console.log(token)
 
   const handleForm = (e) => {
+    console.log('bonjour')
     e.preventDefault()
 
-    dispatch({
-      type: 'authent',
-      payload: login,
-    })
+    console.log(login)
 
-    setLogin({
-      email: '',
-      password: '',
-    })
+    dispatch(loginUser(login))
+
+    // dispatch({
+    //   type: 'loginUser',
+    //   payload: login,
+    // })
+
+    // console.log(dispatch(loginUser(login)))
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate('/profile')
+      console.log(token)
+      console.log('correct token')
+    } else {
+      console.log('no token')
+    }
+  }, [navigate, token])
 
   const handleInputs = (e) => {
     console.log('tototootot')
@@ -79,11 +108,15 @@ export default function Login() {
             {/* <a href="./user.html" className="sign-in-button">
               Sign In
             </a> */}
-            <NavLink className="sign-in-button" to={`/profil`}>
-              Sign In
-            </NavLink>
+
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            {/* <!-- <button className="sign-in-button">Sign In</button> --> */}
+            <button
+              // onClick={handleForm}
+              type="submit"
+              className="sign-in-button"
+            >
+              Sign In
+            </button>
             {/* <!--  --> */}
           </form>
         </section>
