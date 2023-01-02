@@ -22,13 +22,12 @@ export default function Navbar() {
 
       {token === null ? (
         <NavLink to="/login" className="main-nav-item">
-          {/* <FaUserCircle size={18} /> */}
           Sign In
         </NavLink>
       ) : (
         <div>
           <NavLink className="main-nav-item" to="/profile">
-            {/* <FaUserCircle size={18} /> */}
+            <i className="fa fa-user-circle"></i>
             {`${firstName}`}
           </NavLink>
           <NavLink
@@ -36,7 +35,7 @@ export default function Navbar() {
             to="/"
             onClick={() => dispatch(logOut())}
           >
-            {/* <FaSignOutAlt /> */}
+            {/* <i className="fa fa-sign-out"></i> */}
             Sign Out
           </NavLink>
         </div>

@@ -3,10 +3,10 @@ import { url } from './api'
 
 const initialState = {
   token: localStorage.getItem('token'),
-  email: '',
-  password: '',
   firstName: localStorage.getItem('firstName'),
   lastName: localStorage.getItem('lastName'),
+  email: '',
+  password: '',
   loginError: null,
 }
 
@@ -62,11 +62,11 @@ async function getUserInfos(token) {
     })
     const json = await response.json()
 
-    const userInfo = json.body
+    const userInfos = json.body
 
-    localStorage.setItem('firstName', userInfo.firstName)
-    localStorage.setItem('lastName', userInfo.lastName)
-    return userInfo
+    localStorage.setItem('firstName', userInfos.firstName)
+    localStorage.setItem('lastName', userInfos.lastName)
+    return userInfos
   } catch (error) {
     console.log(error)
   }
@@ -86,8 +86,8 @@ export const updateUser = createAsyncThunk(
         },
 
         body: JSON.stringify({
-          email: userData.email,
-          password: userData.password,
+          firstName: userData.firstname,
+          lastName: userData.lastname,
         }),
       })
       const json = await response.json()

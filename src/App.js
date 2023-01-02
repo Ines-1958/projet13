@@ -10,7 +10,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profil />} />
+        {/* <Route path="/profile" element={<Profil />} /> */}
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profil />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   )
