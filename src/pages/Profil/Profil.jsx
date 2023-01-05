@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
+// import AccountContent from '../components/AccountContent'
+import { useForm } from 'react-hook-form'
+
 import { updateUser, getUser } from '../../redux/slices/authSlice'
 import Navbar from '../../components/Navbar/Navbar'
+import '../Profil/Profil.css'
 
 export default function Profil() {
   const { firstName, lastName } = useSelector((state) => state.auth)
@@ -52,33 +55,30 @@ export default function Profil() {
               <h1>Welcome back</h1>
               <form
                 onSubmit={handleSubmit(dispatchUser)}
-                // onSubmit={dispatchUser}
-                className="update-name__form"
+                className="profile-update"
               >
-                <div className="update-name__col-left">
+                <div className="edit-name">
                   <input
                     type="text"
                     id="firstname"
-                    className="update-name__input inp-firstName "
+                    className="inp-firstName"
                     placeholder={name.firstName}
                     {...register('firstname')}
-                    // onChange={handleInputs}
                   />
-                  <button className="edit-name-button" type="submit">
+                  <button className="edit-profile_button" type="submit">
                     Save
                   </button>
                 </div>
-                <div className="update-name__col-right">
+                <div className="edit-name">
                   <input
                     type="text"
                     id="lastname"
-                    className="update-name__input inp-lastName"
+                    className=" inp-lastName"
                     placeholder={name.lastName}
                     {...register('lastname')}
-                    // onChange={handleInputs}
                   />
                   <button
-                    className="edit-name-button"
+                    className="edit-profile_button"
                     onClick={() => setEditProfile(false)}
                   >
                     Cancel

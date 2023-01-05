@@ -24,7 +24,6 @@ export default function Login() {
   //
   const navigate = useNavigate()
 
-  // const { register, handleSubmit } = useForm()
   const { token, loginError } = useSelector((state) => state.auth)
 
   console.log(token)
@@ -36,13 +35,6 @@ export default function Login() {
     console.log(login)
 
     dispatch(loginUser(login))
-
-    // dispatch({
-    //   type: 'loginUser',
-    //   payload: login,
-    // })
-
-    // console.log(dispatch(loginUser(login)))
   }
 
   useEffect(() => {
@@ -110,11 +102,7 @@ export default function Login() {
             </a> */}
 
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            <button
-              // onClick={handleForm}
-              type="submit"
-              className="sign-in-button"
-            >
+            <button type="submit" className="sign-in-button">
               Sign In
             </button>
             {/* <!--  --> */}
