@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../redux/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
-// import { FaUserCircle } from 'react-icons/fa'
+import { FaUserCircle } from 'react-icons/fa'
 
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
@@ -24,6 +24,7 @@ export default function Login() {
   //
   const navigate = useNavigate()
 
+  // const { register, handleSubmit } = useForm()
   const { token, loginError } = useSelector((state) => state.auth)
 
   console.log(token)
@@ -60,11 +61,9 @@ export default function Login() {
 
   return (
     <>
-      <Navbar />
-
       <main className="main bg-dark">
         <section className="sign-in-content">
-          <i className="fa fa-user-circle sign-in-icon"></i>
+          <FaUserCircle className="icon faUserCircle" />
 
           <h1>Sign In</h1>
 
@@ -102,14 +101,17 @@ export default function Login() {
             </a> */}
 
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            <button type="submit" className="sign-in-button">
+            <button
+              // onClick={handleForm}
+              type="submit"
+              className="sign-in-button"
+            >
               Sign In
             </button>
             {/* <!--  --> */}
           </form>
         </section>
       </main>
-      <Footer />
     </>
   )
 }

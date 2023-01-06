@@ -1,13 +1,11 @@
-swagger: '2.0'
+openapi: 3.0.1
 info:
   title: Bank Argent API documentation
   description: Contains all available API endpoints in this codebase
-  version: '1.0.11'
-  termsOfService: 'http://swagger.io/terms/'
-host: localhost:3001
-basePath: /api/v1
-schemes:
-  - http
+  termsOfService: http://swagger.io/terms/
+  version: 1.0.11
+servers:
+  - url: http://localhost:3001/api/v1
 paths:
   /user/login:
     post:
@@ -15,321 +13,266 @@ paths:
         - User Module
       summary: Login
       description: API for Login
-      parameters:
-        - in: body
-          name: body
-          description: Login Payload
-          required: true
-          schema:
-            $ref: '#/definitions/Login'
-      produces:
-        - application/json
+      requestBody:
+        description: Login Payload
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
       responses:
         '200':
           description: Login Successfully
-          schema:
-            $ref: '#/definitions/LoginResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
         '400':
           description: Invalid Fields
+          content: {}
         '500':
           description: Internal Server Error
+          content: {}
+      x-codegen-request-body-name: body
   /user/signup:
     post:
       tags:
         - User Module
       summary: Signup
       description: API for Signup
-      parameters:
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
+      requestBody:
+        description: Signup Payload
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
       responses:
         '200':
           description: Signup Successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
         '400':
           description: Invalid Fields
+          content: {}
         '500':
           description: Internal Server Error
+          content: {}
+      x-codegen-request-body-name: body
   /user/profile:
- 
- //SWAGGER ACCOUNT
-  /user/accounts/{accountId}/transactions:
-    get:
-      tags:
-        - User transactions
-      summary: User's account
-      description: API to retrieve all account transactions for the current month from a specific user account
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-          
-        - in: path
-        name: accountId
-        description: User's account ID
-        type: integer
-        required: true
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Successfully retrieved transactions
-          schema:
-            $ref: '#/definitions/TransactionsResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
- 
- //SWAGGER TRANSACTIONS
- /user/accounts/{accountId}/transactions/{transactionsId}:
-    get:
-      tags:
-      - User Transactions
-      summary: Transaction details
-      description: API to retrieve details of a specific transaction from a specific account
-      parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        type: integer
-        required: true
-      - in: path
-        name: accountId
-        description: User's account ID
-        type: integer
-        required: true
-      - in: path
-        name: transactionsId
-        description: Transaction's ID
-        required: true
-        type: integer
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Transaction retrieved successully
-          schema:
-            $ref: '#/definitions/Transactions'
-        '400':
-          description: Invalid Fields. 
-        '500':
-          description: Internal Server Error
- 
- 
- 
- 
- 
- 
- 
- 
-  /user/signup:
-    post:
-      tags:
-        - User Module
-      summary: Signup
-      description: API for Signup
-      parameters:
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Signup Successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/profile:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: User profile retrieved successully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
     put:
-      security:
-        - Bearer: []
       tags:
         - User Module
       summary: User Profile API
       description: API for updating a user profile
       parameters:
-        - in: header
-          name: Authorization
+        - name: Authorization
+          in: header
           description: Attach Bearer JWT token
           required: true
-        - in: body
-          name: body
-          description: Update user profile attributes
-          required: true
-          schema:
-            $ref: '#/definitions/UserProfile'
-      produces:
-        - application/json
+          schema: {}
+      requestBody:
+        description: Update user profile attributes
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+        required: true
       responses:
         '200':
           description: User profile retrieved successully
-          schema:
-            $ref: '#/definitions/ApiResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
         '400':
           description: Invalid Fields
+          content: {}
         '500':
           description: Internal Server Error
-
-//SWAGGER UPDATE
-/user/accounts/{accountId}/transactions/{transactionsId}/update:
-    patch:
+          content: {}
+      security:
+        - Bearer: []
+      x-codegen-request-body-name: body
+    post:
       tags:
-      - User Transactions
-      summary: Update informations about specific transaction
-      description: API for updating transaction's informations
-      
+        - User Module
+      summary: User Profile API
+      description: API for fetching a user profile
       parameters:
-      - in: header
-        name: Authorization
-        description: Attach Bearer JWT token
-        type: string
-        required: true
-      - in: path
-        name: accountId
-        description: User's account ID
-        type: integer
-        required: true
-      - in: path
-        name: transactionsId
-        description: Transaction's ID
-        required: true
-        type: integer
-      - in: body
-        name: body
-        required: true
-        description: Update transaction's informations
-        schema:
-            $ref: '#/definitions/TransactionUpdate'
-      produces:
-      - application/json
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema: {}
       responses:
         '200':
-          description: Transaction updated successully
-          schema:
-            $ref: '#/definitions/TransactionUpdateResponse'
+          description: User profile retrieved successully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
         '400':
           description: Invalid Fields
+          content: {}
         '500':
           description: Internal Server Error
-
-
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
-definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
-  Login:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-  ApiResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          id:
+          content: {}
+      security:
+        - Bearer: []
+  /user/accounts/{accountId}/transactions:
+    get:
+      tags:
+        - User transactions
+      summary: User's account
+      description: >-
+        API to retrieve all account transactions for the current month from a
+        specific user account
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
             type: string
-          email:
-            type: string
-  LoginResponse:
-    type: object
-    properties:
-      token:
-        type: string
-  UserProfile:
-    type: object
-    properties:
-      firstName:
-        type: string
-      lastName:
-        type: string
-  
-   TransactionsResponse:
-    type: object
-    properties:
-      transactionsId:
-        type: integer
-        format: int64
-      date:
-        type: string
-      description:
-        type: string
-      amount:
-        type: number
-      currency:
-        type: string
-      type:
-        type: string
-      update:
-        type: string
-      
-
-  TransactionUpdateResponse:
-    type: object
-    properties:
-      update:
-        type: string
+        - name: accountId
+          in: path
+          description: User's account ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsResponse'
+        '400':
+          description: Invalid Fields
+          content: {}
+        '500':
+          description: Internal Server Error
+          content: {}
+  /user/accounts/{accountId}/transactions/{transactionsId}:
+    get:
+      tags:
+        - User Transactions
+      summary: Transaction details
+      description: >-
+        API to retrieve details of a specific transaction from a specific
+        account
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: integer
+        - name: accountId
+          in: path
+          description: User's account ID
+          required: true
+          schema:
+            type: integer
+        - name: transactionsId
+          in: path
+          description: Transaction's ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Transaction retrieved successully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionsResponse'
+        '400':
+          description: Invalid Fields.
+          content: {}
+        '500':
+          description: Internal Server Error
+          content: {}
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          description: user email
+        password:
+          type: string
+          description: user password
+        firstName:
+          type: string
+          description: user first name
+        lastName:
+          type: string
+          description: user last name
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          description: user email
+        password:
+          type: string
+          description: user password
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        body:
+          type: object
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    UserProfile:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+    TransactionsResponse:
+      type: object
+      properties:
+        transactionsId:
+          type: integer
+          format: int64
+        date:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        type:
+          type: string
+        update:
+          type: string
+    TransactionUpdateResponse:
+      type: object
+      properties:
+        update:
+          type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header

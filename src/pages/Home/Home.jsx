@@ -8,7 +8,7 @@ import iconSecurity from '../../assets/iconSecurity.png'
 export default function Home() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>
         <div className="hero">
           <section className="hero-content">
@@ -51,7 +51,7 @@ export default function Home() {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

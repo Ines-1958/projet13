@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import argentBankLogo from '../../assets/argentBankLogo.png'
 import { logOut } from '../../redux/slices/authSlice'
+import { FaUserCircle, FaSignOutAlt } from 'react-icons/fa'
+import './Navbar.css'
 
 export default function Navbar() {
   const { firstName, token } = useSelector((state) => state.auth)
@@ -22,12 +24,13 @@ export default function Navbar() {
 
       {token === null ? (
         <NavLink to="/login" className="main-nav-item">
+          <FaUserCircle className="icon faUserCircle" />
           Sign In
         </NavLink>
       ) : (
         <div>
           <NavLink className="main-nav-item" to="/profile">
-            <i className="fa fa-user-circle"></i>
+            <FaUserCircle className="icon faUserCircle" />
             {`${firstName}`}
           </NavLink>
           <NavLink
@@ -35,6 +38,7 @@ export default function Navbar() {
             to="/"
             onClick={() => dispatch(logOut())}
           >
+            <FaSignOutAlt className="icon faSignOutAlt" />
             {/* <i className="fa fa-sign-out"></i> */}
             Sign Out
           </NavLink>
