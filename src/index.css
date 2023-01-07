@@ -1,21 +1,5 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
 }
@@ -85,7 +69,6 @@ body {
 }
 
 .hero {
-  /* background-image: url('../img/bank-tree.jpeg'); */
   background-image: url('./assets/bank-tree.jpeg');
   background-position: 0 -50px;
   background-size: cover;
@@ -302,5 +285,74 @@ body {
 
   .transaction-button {
     width: 200px;
+  }
+}
+
+.icon {
+  margin-right: 5px;
+  line-height: 30px;
+}
+.faUserCircle {
+  font-size: 20px;
+  color: #e0e6ed;
+}
+.faSignOutAlt {
+  color: #4c5c6b;
+}
+
+.profile-update {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.profile-update .edit-name {
+  display: flex;
+  gap: 15px;
+}
+
+.profile-update .edit-name input {
+  color: #c3cfd9;
+  background-color: #ffffff;
+  border: 3px solid #b8c4ce;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #283845;
+}
+
+.profile-update .btn {
+  display: flex;
+}
+
+.profile-update .btn button {
+  padding: 10px 40px;
+  color: #6a5ef5;
+  border: 3px solid #6a5ef5;
+  border-radius: 4px;
+  font-size: 15px;
+  margin-right: 2px;
+  margin-left: 15px;
+}
+
+@media (min-width: 410px) and (max-device-width: 720px) {
+  .profile-update .edit-name input {
+    font-size: 13px;
+  }
+
+  .profile-update .btn button {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 400px) {
+  .profile-update .edit-name input {
+    font-size: 10px;
+  }
+
+  .profile-update .btn button {
+    font-size: 9px;
   }
 }

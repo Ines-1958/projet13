@@ -1,10 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-// import AccountContent from '../components/AccountContent'
-import { useForm } from 'react-hook-form'
-import { updateUser, getUser } from '../../redux/slices/authSlice'
-import Navbar from '../../components/Navbar/Navbar'
-import '../Profil/Profil.css'
+import React from 'react'
 import EditUserProfile from '../../components/EditUserProfile/EditUserProfile'
 
 export default function Profil() {

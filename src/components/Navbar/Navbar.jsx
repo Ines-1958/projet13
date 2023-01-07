@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import argentBankLogo from '../../assets/argentBankLogo.png'
 import { logOut } from '../../redux/slices/authSlice'
 import { FaUserCircle, FaSignOutAlt } from 'react-icons/fa'
-import './Navbar.css'
 
 export default function Navbar() {
   const { firstName, token } = useSelector((state) => state.auth)
@@ -39,7 +38,6 @@ export default function Navbar() {
             onClick={() => dispatch(logOut())}
           >
             <FaSignOutAlt className="icon faSignOutAlt" />
-            {/* <i className="fa fa-sign-out"></i> */}
             Sign Out
           </NavLink>
         </div>

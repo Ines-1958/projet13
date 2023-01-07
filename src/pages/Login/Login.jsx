@@ -5,13 +5,6 @@ import { loginUser } from '../../redux/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { FaUserCircle } from 'react-icons/fa'
 
-import Footer from '../../components/Footer/Footer'
-import Navbar from '../../components/Navbar/Navbar'
-import { NavLink } from 'react-router-dom'
-// import loginUser from '../../redux/slices/authSlice.js'
-
-//
-
 export default function Login() {
   const [login, setLogin] = useState({
     email: '',
@@ -19,12 +12,9 @@ export default function Login() {
   })
 
   const dispatch = useDispatch()
-  console.log(dispatch)
 
-  //
   const navigate = useNavigate()
 
-  // const { register, handleSubmit } = useForm()
   const { token, loginError } = useSelector((state) => state.auth)
 
   console.log(token)
@@ -35,7 +25,7 @@ export default function Login() {
 
     console.log(login)
 
-    dispatch(loginUser(login))
+    dispatch(loginUser(login)) //Action: loginUser et payload login déclaré dans le state
   }
 
   useEffect(() => {
@@ -96,10 +86,6 @@ export default function Login() {
             </div>
             {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
 
-            {/* <a href="./user.html" className="sign-in-button">
-              Sign In
-            </a> */}
-
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
             <button
               // onClick={handleForm}
@@ -108,7 +94,6 @@ export default function Login() {
             >
               Sign In
             </button>
-            {/* <!--  --> */}
           </form>
         </section>
       </main>

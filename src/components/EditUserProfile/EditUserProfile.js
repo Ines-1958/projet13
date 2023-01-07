@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { updateUser, getUser } from '../../redux/slices/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import '../EditUserProfile/EditUserProfile.css'
 
 export default function EditUserProfile() {
   const { firstName, lastName } = useSelector((state) => state.auth)
   const [editProfile, setEditProfile] = useState(false)
   const [name, setName] = useState({
-    firstName: firstName,
-    lastName: lastName,
+    firstName: '',
+    lastName: '',
   })
   const dispatch = useDispatch()
 
@@ -27,8 +26,7 @@ export default function EditUserProfile() {
   }
 
   useEffect(() => {
-    document.title = 'ArgentBank - Profile'
-    setName({ firstName: firstName, lastName: lastName })
+    setName({ firstName, lastName })
   }, [firstName, lastName])
 
   return (
@@ -38,7 +36,6 @@ export default function EditUserProfile() {
           <h1>Welcome back</h1>
           <form
             onSubmit={handleSubmit(dispatchUser)}
-            // onSubmit={dispatchUser}
             className="profile-update"
           >
             <div className="edit-name">
@@ -48,7 +45,6 @@ export default function EditUserProfile() {
                 className="inp-firstName"
                 placeholder={name.firstName}
                 {...register('firstname')}
-                // onChange={handleInputs}
               />
 
               <input
@@ -57,7 +53,6 @@ export default function EditUserProfile() {
                 className=" inp-lastName"
                 placeholder={name.lastName}
                 {...register('lastname')}
-                // onChange={handleInputs}
               />
             </div>
             <div className="btn">

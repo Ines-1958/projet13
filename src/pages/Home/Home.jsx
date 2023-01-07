@@ -1,6 +1,4 @@
 import React from 'react'
-import Footer from '../../components/Footer/Footer'
-import Navbar from '../../components/Navbar/Navbar'
 import iconChat from '../../assets/iconChat.png'
 import iconMoney from '../../assets/iconMoney.png'
 import iconSecurity from '../../assets/iconSecurity.png'
@@ -8,7 +6,6 @@ import iconSecurity from '../../assets/iconSecurity.png'
 export default function Home() {
   return (
     <>
-      {/* <Navbar /> */}
       <main>
         <div className="hero">
           <section className="hero-content">
@@ -50,8 +47,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      {/* <Footer /> */}
     </>
   )
 }
