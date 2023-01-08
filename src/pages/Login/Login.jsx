@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../redux/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
@@ -17,13 +16,8 @@ export default function Login() {
 
   const { token, loginError } = useSelector((state) => state.auth)
 
-  console.log(token)
-
   const handleForm = (e) => {
-    console.log('bonjour')
     e.preventDefault()
-
-    console.log(login)
 
     dispatch(loginUser(login)) //Action: loginUser et payload login déclaré dans le state
   }
@@ -31,19 +25,16 @@ export default function Login() {
   useEffect(() => {
     if (token) {
       navigate('/profile')
-      console.log(token)
-      console.log('correct token')
-    } else {
-      console.log('no token')
     }
   }, [navigate, token])
 
+  /**handleInputs est une fonction qui permet de lier le state aux inputs du formulaire */
   const handleInputs = (e) => {
-    console.log('tototootot')
-    if (e.target.classList.contains('inp-email')) {
+    if (e.target.classList.contains('input-email')) {
       const newObjState = { ...login, email: e.target.value }
+      console.log(newObjState)
       setLogin(newObjState)
-    } else if (e.target.classList.contains('inp-password')) {
+    } else if (e.target.classList.contains('input-password')) {
       const newObjState = { ...login, password: e.target.value }
       setLogin(newObjState)
     }
@@ -65,7 +56,7 @@ export default function Login() {
                 id="username"
                 value={login.email}
                 onChange={handleInputs}
-                className="inp-email"
+                className="input-email"
               />
             </div>
 
@@ -76,7 +67,7 @@ export default function Login() {
                 id="password"
                 value={login.password}
                 onChange={handleInputs}
-                className="inp-password"
+                className="input-password"
               />
             </div>
 
@@ -87,11 +78,7 @@ export default function Login() {
             {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
 
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            <button
-              // onClick={handleForm}
-              type="submit"
-              className="sign-in-button"
-            >
+            <button type="submit" className="sign-in-button">
               Sign In
             </button>
           </form>

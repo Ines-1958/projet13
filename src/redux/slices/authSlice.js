@@ -11,8 +11,10 @@ const initialState = {
 }
 
 export const loginUser = createAsyncThunk(
+  /**le nom du reducer , suivi de l'action(type de l'action) */
   'auth/loginUser',
 
+  /**userData est l'argument passé au rappel pour l'adresse mail et le mot de passe  */
   async (userData, { rejectWithValue }) => {
     const response = await fetch(`${url}/login`, {
       method: 'POST',
@@ -44,7 +46,6 @@ export const loginUser = createAsyncThunk(
       return dataUserPayload
     } else {
       const error = { message: json.message }
-      console.log(error)
 
       return rejectWithValue(error)
     }
@@ -74,7 +75,7 @@ async function getUserInfos(token) {
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-
+  /**userData représente le firstName et le lastName */
   async (userData, { getState }) => {
     const { auth } = getState()
     try {
@@ -129,6 +130,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    /**Gestion de la deconnexion de l'utilisateur */
     logOut: (state) => {
       let itemsToBeRemoved = ['token', 'firstName', 'lastName']
       itemsToBeRemoved.forEach((item) => localStorage.removeItem(item))
