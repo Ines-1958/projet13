@@ -7,7 +7,7 @@ const initialState = {
   lastName: localStorage.getItem('lastName'),
   email: '',
   password: '',
-  loginError: null,
+  signInError: null,
 }
 
 export const loginUser = createAsyncThunk(
@@ -137,12 +137,12 @@ const authSlice = createSlice({
       state.firstName = null
       state.lastName = null
       state.token = null
-      state.loginError = null
+      state.signInError = null
     },
   },
   extraReducers: (builder) => {
     builder.addCase(loginUser.pending, (state, action) => {
-      state.loginError = null
+      state.signInError = null
     })
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload.token
@@ -150,7 +150,7 @@ const authSlice = createSlice({
       state.lastName = action.payload.lastName
     })
     builder.addCase(loginUser.rejected, (state, action) => {
-      state.loginError = action.payload.message
+      state.signInError = action.payload.message
     })
 
     builder.addCase(getUser.fulfilled, (state, action) => {

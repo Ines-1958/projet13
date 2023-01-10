@@ -61,7 +61,7 @@ paths:
           description: Internal Server Error
           content: {}
       x-codegen-request-body-name: body
-  /user/profile:
+  /user/{userId}/profile:
     put:
       tags:
       - User Module
@@ -124,7 +124,7 @@ paths:
           content: {}
       security:
       - Bearer: []
-  /user/accounts/{accountId}/transactions:
+  /user/{userId}/accounts/{accountId}/transactions:
     get:
       tags:
       - User transactions
@@ -157,7 +157,7 @@ paths:
         500:
           description: Internal Server Error
           content: {}
-  /user/accounts/{accountId}/transactions/{transactionsId}:
+  /user/{userId}/accounts/{accountId}/transactions/{transactionId}:
     get:
       tags:
       - User Transactions
@@ -177,7 +177,7 @@ paths:
         required: true
         schema:
           type: integer
-      - name: transactionsId
+      - name: transactionId
         in: path
         description: Transaction's ID
         required: true
@@ -196,7 +196,7 @@ paths:
         500:
           description: Internal Server Error
           content: {}
-  /user/accounts/{accountId}/transactions/{transactionsId}/update:
+  /user/{userId}/accounts/{accountId}/transactions/{transactionId}/update:
     patch:
       tags:
       - User Transactions
@@ -215,7 +215,7 @@ paths:
         required: true
         schema:
           type: integer
-      - name: transactionsId
+      - name: transactionId
         in: path
         description: Transaction's ID
         required: true
@@ -296,7 +296,7 @@ components:
           type: string
     TransactionsResponse:
       type: object
-    transactionsId:
+    transactionId:
       type: integer
       format: int64
     date:

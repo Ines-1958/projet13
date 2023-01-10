@@ -14,7 +14,7 @@ export default function Login() {
 
   const navigate = useNavigate()
 
-  const { token, loginError } = useSelector((state) => state.auth)
+  const { token, signInError } = useSelector((state) => state.auth)
 
   const handleForm = (e) => {
     e.preventDefault()
@@ -32,7 +32,6 @@ export default function Login() {
   const handleInputs = (e) => {
     if (e.target.classList.contains('input-email')) {
       const newObjState = { ...login, email: e.target.value }
-      console.log(newObjState)
       setLogin(newObjState)
     } else if (e.target.classList.contains('input-password')) {
       const newObjState = { ...login, password: e.target.value }
@@ -71,13 +70,13 @@ export default function Login() {
               />
             </div>
 
+            {signInError && <div className="error-message">{signInError}</div>}
+
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
 
-            {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
             <button type="submit" className="sign-in-button">
               Sign In
             </button>

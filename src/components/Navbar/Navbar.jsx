@@ -27,7 +27,7 @@ export default function Navbar() {
           Sign In
         </NavLink>
       ) : (
-        <div>
+        <div className="main-nav_block">
           <NavLink className="main-nav-item" to="/profile">
             <FaUserCircle className="icon faUserCircle" />
             {`${firstName}`}

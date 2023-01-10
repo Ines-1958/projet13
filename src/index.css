@@ -68,6 +68,12 @@ body {
   width: 200px;
 }
 
+.main-nav .main-nav_block {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
 .hero {
   background-image: url('./assets/bank-tree.jpeg');
   background-position: 0 -50px;
@@ -170,6 +176,12 @@ body {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+}
+
+.sign-in-content .error-message {
+  color: #ff6060;
+  margin-bottom: 10px;
+  font-size: 13px;
 }
 
 .sign-in-icon {
