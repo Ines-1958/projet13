@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Projet 13 - ArgentBank
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project consists of the creation of a web application, for the new bank Argent Bank,
+    allowing customers to log in and manage their accounts and profile as well as a proposal for endpoints
+    APIs required for transactions.
+    
+### 1. Prerequisites
 
-## Available Scripts
+- NodeJS
+- MongoDB Community Server
+### 2. Installation
 
-In the project directory, you can run:
+You have the choice between yarn and npm
 
-### `npm start`
+### 2.1 Backend API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Fork an clone the repository https://github.com/Ines-1958/Project-10-Bank-API on your computer.
+    Open a terminal window in the cloned project
+    Run the following commands:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Install dependencies
+npm install
 
-### `npm test`
+#### Start local dev server
+npm run dev:server
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Populate database with two users
+npm run populate-db
 
-### `npm run build`
+Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
+### 3. Populated Database Data
+Once you run the populate-db script, you should have two users in your database:
+#### Tony Stark
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    First Name: Tony
+    Last Name: Stark
+    Email: tony@stark.com
+    Password: password123
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Steve Rogers
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    First Name: Steve,
+    Last Name: Rogers,
+    Email: steve@rogers.com,
+    Password: password456
 
-### `npm run eject`
+### 4. Front APP
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Open a new terminal and install the node_modules via the npm install command.
+- In order to launch the project on your browser, type the command npm start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### API Documentation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### The project uses redux and redux toolkit for authentication management
