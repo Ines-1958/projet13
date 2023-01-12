@@ -4,7 +4,7 @@ import EditUserProfile from '../../components/EditUserProfile/EditUserProfile'
 export default function Profil() {
   return (
     <>
-      <main className="main bg-dark">
+      <main className="main bg-dark bg-profile">
         <EditUserProfile />
         <h2 className="sr-only">Accounts</h2>
 

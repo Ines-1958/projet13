@@ -17,6 +17,7 @@ body {
 
 .bg-dark {
   background-color: #12002b;
+  padding-top: 0.2rem;
 }
 
 .sr-only {
@@ -43,6 +44,9 @@ body {
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-nav a.router-link-exact-active {
@@ -305,11 +309,10 @@ body {
   line-height: 30px;
 }
 .faUserCircle {
-  font-size: 20px;
-  color: #e0e6ed;
+  font-size: 17px;
 }
 .faSignOutAlt {
-  color: #4c5c6b;
+  color: #2c3e50;
 }
 
 .profile-update {
@@ -349,6 +352,10 @@ body {
   margin-left: 15px;
 }
 
+.bg-profile {
+  padding-bottom: 0.2rem;
+}
+
 @media (min-width: 410px) and (max-device-width: 720px) {
   .profile-update .edit-name input {
     font-size: 13px;
@@ -356,6 +363,14 @@ body {
 
   .profile-update .btn button {
     font-size: 11px;
+  }
+
+  .main-nav-item {
+    margin-right: inherit;
+  }
+
+  .bg-login {
+    padding-bottom: 22rem;
   }
 }
 
@@ -366,5 +381,13 @@ body {
 
   .profile-update .btn button {
     font-size: 9px;
+  }
+
+  .main-nav-item {
+    margin-right: inherit;
+  }
+
+  .bg-login {
+    padding-bottom: 12rem;
   }
 }
